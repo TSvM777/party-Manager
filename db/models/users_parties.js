@@ -3,22 +3,22 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Users_Parties extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+  class UserParty extends Model {
+    static associate({User, Party}) {
+      UserParty.belongsTo(User, {
+        foreignKey: 'user_id',
+      });
+      UserParty.belongsTo(Party, {
+        foreignKey: 'party_id',
+      })
     }
   }
-  Users_Parties.init({
+  UserParty.init({
     user_id: DataTypes.INTEGER,
     party_id: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Users_Parties',
+    modelName: 'UserParty',
   });
-  return Users_Parties;
+  return UserParty;
 };

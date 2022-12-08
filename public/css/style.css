@@ -1,12 +1,236 @@
 body{
-  font-family: 'Alegreya Sans SC', sans-serif;
+  font-family: 'Alumni Sans', sans-serif;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
 }
+
+.map{
+  width: 450px;
+  height: 450px;
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+#qwer{
+  padding: 10px;
+}
+.listOfUchastnikov{
+  height: auto;
+  padding: 20px;
+  border: 1px solid black;
+  text-align: center;
+  border-radius: 10px;
+  background-color: rgb(206, 207, 207);
+  position: fixed;
+  width: 450px;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.timeDiv {
+  z-index: 1;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgba(12, 6, 1, 0.911);
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+a, .dateOfParty{
+  text-decoration: none;
+  color: rgba(90, 62, 2, 0.6);
+}
+a:hover, .dateOfParty:hover{
+  cursor: help;
+  color:rgba(212, 149, 14, 0.6)
+}
+a:active{
+  color:rgba(90, 62, 2, 0.6);
+}
+
+.form-control:focus {
+  border-color: white;
+  box-shadow: inset 0 1px 1px rgba(0, 252, 0, 0.075), 0 0 8px rgba(90, 62, 2, 0.6);
+}
+
+.code{
+  width: 250px;
+}
+
+.divZagolovok{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.partyList{
+  margin: 50px 0 0 100px;
+  max-width: 1100px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cartOfParty{
+  border: 2px solid rgb(99, 99, 99, 0.5);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  height: 300px;
+  width: 450px;
+}
+.cartOfZakup{
+  gap: 10px;
+}
+.cartOfList, .cartOfZakup{
+  text-align: center;
+  margin: 50px 0 0 100px;
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+}
+.infoAboutParty{
+  display: flex;
+}
+.straincher{
+  gap: 200px;
+}
+.listOfPartyInfo{
+  margin: 50px 0px 0px 150px;
+}
+.listOfFunctions{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: 40px 0px 0px 40px;
+  gap: 20px;
+}
+.calculatorH{
+  position: fixed;
+  bottom: 35%;
+  right: 3%;
+}
+.calculatorImage{
+  width: 200px;
+  height: 200px;
+  transform: rotate(-25deg);
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+}
+.dateOfParty{
+  width: 200px;
+  text-align: end;
+  margin-right: 10px;
+}
+.cart{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+
+.textOfCart{
+  width: 250px;
+  height: 40px;
+}
+.divCode{
+  width: 350px;
+  display: flex;
+}
+.divBlock{
+  display: flex;
+  flex-direction: column;
+}
+.zagolovok{
+  margin: 50px 0 0 50px;
+}
+
+.btn-outline {
+  border-color: #ced4da;
+}
+
+.btn:active{
+  border: white !important;
+}
+
+.btn-outline:hover{
+  box-shadow: 0 0 8px rgba(90, 62, 2, 0.6);
+}
+
+.wrapperMain{
+  width: 1200px;
+}
+
+.wrapperAuth{
+  width: 400px;
+}
+
+.wrapperCreate{
+  width: 800px;
+}
+
+.col{
+  width: 300px!important;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.wrapperParty{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.formForInput{
+  margin: 10px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .container {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-  }
+}
+.divTable{
+  display: flex;
+  margin: 100px 0 0 100px;
+  gap: 50px;
+}
+.tableForFinal{
+  overflow: scroll;
+  height: 400px;
+  width: 600px;
+}
+thead{
+  background-color: rgba(156, 120, 41, 0.6);
+}
+
   @media (min-width: 768px) {
     .container {
       width: 750px;

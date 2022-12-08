@@ -4,13 +4,16 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Zakup extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+    static associate({User, Party, Debtor}) {
+      Zakup.belongsTo(User, {
+        foreignKey: 'user_id',
+      });
+      Zakup.belongsTo(Party, {
+        foreignKey: 'party_id',
+      })
+      Zakup.hasMany(Debtor, {
+        foreignKey: 'zakup_id',
+      });
     }
   }
   Zakup.init({

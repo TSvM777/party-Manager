@@ -22,6 +22,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       code: {
+        unique: true,
         allowNull: false,
         type: Sequelize.STRING
       },
