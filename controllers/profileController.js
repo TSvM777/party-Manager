@@ -44,6 +44,7 @@ exports.renderEditPage = async (req, res) => {
 exports.editParty = async (req, res) => {
   const {user} = req.session
   const { title, code, date, clothes, place } = req.body
+  const party = await Party.findOne({ where: { id: req.params.id, user_id:user.id }, raw:true });
   try {
     await Party.update(
       {
@@ -51,7 +52,7 @@ exports.editParty = async (req, res) => {
         code,
         date,
         clothes,
-        place
+        place:place.replace(/,/, ', ')
       },
       {
         where: {
@@ -61,6 +62,9 @@ exports.editParty = async (req, res) => {
     );
     res.redirect(`/profile/${user.id}`)
   } catch (error) {
-    console.log(error)
+    if(error.name === 'SequelizeUniqueConstraintError'){
+      message = 'Код содержит недопустимое значение, придумайте новый код'
+    }
+    render(EditPage, {user, party, message}, res)
   }
 }

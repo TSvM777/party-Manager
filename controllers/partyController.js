@@ -17,11 +17,14 @@ exports.createParty = async (req, res) => {
   const { title, code, date, clothes, place } = req.body
   const {user} = req.session
   try {
-    const party = await Party.create({title, code, date, clothes, place, user_id:user.id})
+    const party = await Party.create({title, code, date, clothes, place:place.replace(/,/, ', '), user_id:user.id})
     const temp = await UserParty.create({user_id:user.id, party_id:party.id})
     res.redirect('/')
   } catch (error) {
-    console.log(error)
+    if(error.name === 'SequelizeUniqueConstraintError'){
+      message = 'Код содержит недопустимое значение, придумайте новый код'
+    }
+    render(CreateParty, {user, message}, res)
   }
 }
 

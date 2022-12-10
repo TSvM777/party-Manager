@@ -6,7 +6,6 @@ const {
 } = document
 const partyCode = document.querySelector('.partyCode')
 
-
 document.addEventListener('click', (event) => {
   if (event.target.className === 'map1') {
     event.target.nextSibling.style.display = 'block'
@@ -19,6 +18,7 @@ document.addEventListener('click', (event) => {
       body.style.overflow = 'hidden';
       body.style.height = '100%';
       let coord = event.target.innerText.split(', ').map((el) => +el)
+      console.log('coord', coord)
       let myMap;
       ymaps.ready(init);
 
@@ -27,9 +27,25 @@ document.addEventListener('click', (event) => {
             center: coord,
             zoom: 19
           }),
-          myMap.controls.remove('geolocationControl'); // удаляем геолокацию
-        myMap.controls.remove('searchControl'); // удаляем поиск
-        myMap.controls.remove('rulerControl'); // удаляем контрол правил 
+          myGeoObject = new ymaps.GeoObject({
+            // Описание геометрии.
+            geometry: {
+                type: "Point",
+                coordinates: coord
+            },
+            // Свойства.
+            properties: {
+                // Контент метки.
+                iconContent: 'Ваша туса будет тут',
+                hintContent: coord
+            }
+        }, {
+            // Опции.
+            // Иконка метки будет растягиваться под размер ее содержимого.
+            preset: 'islands#blackStretchyIcon',
+        }),
+        myMap.geoObjects
+        .add(myGeoObject)
       }
     }
   } else if (event.target.className === 'timeDiv') {
@@ -117,36 +133,79 @@ document.addEventListener('click', async (event) => {
   }
 })
 
-// document.addEventListener('click', async (event) => {
-//   if (event.target.dataset.count) {
-//     const id = event.target.dataset.count
-//     console.log(id)
-//     try {
-//       const response = await fetch(`/party/spisok/${id}`)
-//       const {
-//         users
-//       } = await response.json()
-//       const array = []
-//       users
-//       const template = `
-//       <div class='listDiv'>
-//       <div class='listOfUchastnikov'>
-//               <h2>Список участников</h2>
-//               <ol>${users.map((el)=>(
-//                 <li>
-//                   <div class='cart' id='qwer'>
-//                     <p style={{color: 'black'}}>{el.name}</p>
-//                     <button class='btn btn-outline'>удалить</button>
-//                   </div>
-//                 </li>))}
-//               </ol>
-//             </div>
-//           </div> 
-//       `;
-//       countDiv.insertAdjacentHTML('beforeend', template)
-
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-// })
+document.addEventListener('click', async (event) => {
+  if (event.target.className === 'mapForCreate') {
+    event.preventDefault()
+    event.target.nextSibling.style.display = 'block'
+    if (event.target.nextSibling.style.display === 'block') {
+      const newDiv = document.createElement('div');
+      newDiv.className = 'timeDiv';
+      const temp = event.target.closest('.ryad');
+      temp.insertAdjacentElement('afterbegin', newDiv);
+      event.target.nextSibling.style.zIndex = 100;
+      body.style.overflow = 'hidden';
+      body.style.height = '100%';
+      let myMap;
+      const coord = [54.755786, 56.004981]
+      ymaps.ready(init);
+      function init() {
+        let myPlacemark
+        myMap = new ymaps.Map('map', {
+            center: coord,
+            zoom: 19
+          }),
+          myMap.events.add('click', function (e) {
+            var coords = e.get('coords');
+    
+            // Если метка уже создана – просто передвигаем ее.
+            if (myPlacemark) {
+                myPlacemark.geometry.setCoordinates(coords);
+            }
+            // Если нет – создаем.
+            else {
+                myPlacemark = createPlacemark(coords);
+                myMap.geoObjects.add(myPlacemark);
+                // Слушаем событие окончания перетаскивания на метке.
+                myPlacemark.events.add('dragend', function () {
+                    getAddress(myPlacemark.geometry.getCoordinates());
+                });
+            }
+            getAddress(coords);
+        });
+    
+        // Создание метки.
+        function createPlacemark(coords) {
+            return new ymaps.Placemark(coords, {
+                iconCaption: 'поиск...'
+            }, {
+                preset: 'islands#violetDotIconWithCaption',
+                draggable: true
+            });
+        }
+    
+        // Определяем адрес по координатам (обратное геокодирование).
+        function getAddress(coords) {
+            myPlacemark.properties.set('iconCaption', 'поиск...');
+            ymaps.geocode(coords).then(function (res) {
+                var firstGeoObject = res.geoObjects.get(0);
+    
+                myPlacemark.properties
+                    .set({
+                        // Формируем строку с данными об объекте.
+                        iconCaption: [
+                            coord
+                        ].filter(Boolean).join(', '),
+                        // В качестве контента балуна задаем строку с адресом объекта.
+                        balloonContent: coord
+                    });
+            });
+        }
+    }
+  }
+  } else if (event.target.className === 'timeDiv') {
+    event.target.closest('.ryad').lastElementChild.style.display = 'none'
+    event.target.closest('.ryad').lastElementChild.firstChild.remove()
+    event.target.remove()
+    body.style.overflow = 'visible';
+    body.style.height = '0%';
+}})

@@ -1,7 +1,7 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function CreateParty({user}) {
+function CreateParty({user, message}) {
 return (
 <Layout user = {user}>
   {user?(
@@ -10,6 +10,7 @@ return (
   <div className="wrapper">
     <div className='wrapperCreate'>
       <h2>Тусовка</h2>
+              <p>{message}</p>
       <form action="/createParty/addNew" method='POST'>
         <div className='wrapperParty'>
           <div className="formForInput">
@@ -32,8 +33,12 @@ return (
             <input type="text" name="clothes" className="form-control" required />
           </div>
           <div className="formForInput">
-            <label className="form-label">Геопозиция</label>
-            <input type="text" name="place" pattern='[0-9]{2}.[0-9]{6},\s[0-9]{2}.[0-9]{6}' className="form-control" placeholder='XX.XXXXXX, XX.XXXXXX' required />
+            <div className='ryad'>
+              <label className="form-label">Геопозиция</label>
+              <a href='' className='mapForCreate' data-map>Узнать координаты</a>
+              <div className='map' id='map'></div>
+            </div>
+            <input type="text" name="place" pattern='[0-9]{2}.[0-9]{6},[0-9]{2}.[0-9]{6}' className="form-control" placeholder='XX.XXXXXX,XX.XXXXXX' required />
           </div>
           <div className="formForInput">
             <label className="form-label">Жми скорей</label>

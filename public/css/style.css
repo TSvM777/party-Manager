@@ -240,6 +240,10 @@ a:active{
   flex-direction: column;
   justify-content: center;
 }
+.ryad{
+  display: flex;
+  justify-content: space-between;
+}
 .formForInput1{
   margin: 10px;
   display: flex;

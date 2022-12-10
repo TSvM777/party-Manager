@@ -1,7 +1,7 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function EditPage({user, party}) {
+function EditPage({user, party, message}) {
   const date = party.date.toLocaleDateString().split('.').reverse().join('-')
 return (
 <Layout user = {user}>
@@ -11,6 +11,7 @@ return (
   <div className="wrapper">
     <div className='wrapperCreate'>
       <h2>Тусовка</h2>
+      <p>{message}</p>
       <form action={`/profile/edit/${party.id}`} method='POST'>
         <div className='wrapperParty'>
           <div className="formForInput">
@@ -33,8 +34,12 @@ return (
             <input type="text" name="clothes" className="form-control" value={party.clothes} required />
           </div>
           <div className="formForInput">
-            <label className="form-label">Геопозиция</label>
-            <input type="text" pattern='[0-9]{2}.[0-9]{6},\s[0-9]{2}.[0-9]{6}' name="place" className="form-control"  value={party.place} required />
+            <div className='ryad'>
+              <label className="form-label">Геопозиция</label>
+              <a href='' className='mapForCreate' data-map>Узнать координаты</a>
+              <div className='map' id='map'></div>
+            </div>
+            <input type="text" name="place" pattern='[0-9]{2}.[0-9]{6},[0-9]{2}.[0-9]{6}' className="form-control" value={party.place.replace(/, /, ',')} required />
           </div>
           <div className="formForInput">
             <label className="form-label">Жми скорей</label>
