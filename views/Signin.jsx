@@ -9,7 +9,7 @@ return (
     <form action="/auth/signin" method='POST'>
       <div className="mb-3">
         <label className="form-label">Адрес электронной почты</label>
-        <input type="email" name="email" className="form-control" required/>
+        <input type="email" name="email" placeholder='example@example.ru' className="form-control" required/>
       </div>
       <div className="mb-3">
         <label for="exampleInputPassword1" className="form-label">Пароль</label>

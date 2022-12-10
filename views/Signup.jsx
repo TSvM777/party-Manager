@@ -14,7 +14,7 @@ return (
       </div>
       <div className="mb-3">
         <label className="form-label">Адрес электронной почты</label>
-        <input type="email" name="email" className="form-control" required/>
+        <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+[.][a-zA-Z]{2,4}" placeholder='example@example.ru' name="email" className="form-control" required/>
         <div className="form-text">Мы не будем заниматься рассылкой.</div>
       </div>
       <div className="mb-3">
