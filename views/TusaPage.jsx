@@ -1,28 +1,38 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function TusaPage({user, party, people}) {
+function TusaPage({user, party, people, peoples, glava}) {
 return (
 <Layout user={user}>
   {user?(
+    peoples.length>0?(
+    <>
+    <a href='/'><button className="btn btn-outline" id='btnForTusa'>Вернуться на главную</button></a>
   <div>
     <h1>Добрый день, {user.name}!</h1>
     <h2>Здесь ты можешь воспользоваться всем функционалом нашего приложения</h2>
     <div className='infoAboutParty'>
       <div className='listOfFunctions'>
-        <button data-alcohol className="btn btn-outline">Калькулятор алкоголя</button>
-        <button data-kebab className="btn btn-outline">Калькулятор шашлыка</button>
-        <button className="btn btn-outline"><a href={`/party/addproduct/${party.id}`}>Твои затраты</a></button>
-        <button className="btn btn-outline"><a href={`/party/adddebtor/${party.id}`}>Хочешь скинуться?</a></button>
+        <a href={`/party/addproduct/${party.id}`}><button className="btn btn-outline" id='btnForTusa'>Твои затраты</button></a>
+        <a href={`/party/adddebtor/${party.id}`}><button id='btnForTusa' className="btn btn-outline">Хочешь скинуться?</button></a>
         {user.id === party.user_id?(
-        <button className="btn btn-outline"><a href={`/party/spisok/${party.id}`}>Список участников</a></button>
+        <>
+          <a href={`/party/spisok/${party.id}`}><button className="btn btn-outline" id='btnForTusa'>Список участников</button></a>
+          <a href={`/profile/edit/${party.id}`}> <button className="btn btn-outline" id='btnForTusa'>Редактировать</button></a>
+          <a href={`/profile/${user.id}`}> <button className="btn btn-outline" id='btnForTusa'>Удалить</button></a>
+        </>
         ):(
         <></>
         )}
       </div>
       <div className='listOfPartyInfo'>
         
-          <h1><a href={`/party/${party.id}`}>{party.title} </a> </h1> <div className='cart'>
+          <h1><a href={`/party/${party.id}`}>{party.title} </a> </h1>
+          <div className='cart'>
+          <h3 className='textOfCart'>Владелец тусовки</h3>
+          <p className='dateOfParty'>{glava['User.name']}</p>
+        </div>
+           <div className='cart'>
               <h3 className='textOfCart'>Где?</h3>
               <a data-map={party.id} className='map1'>{party.place}</a>
               <div id={party.id} className='map'></div>
@@ -52,7 +62,16 @@ return (
     <h2 className='calculatorH'>Жми на <a href={`/party/itogo/${party.id}`}>калькулятор</a>, чтобы узнать затраты</h2>
     <a href={`/party/itogo/${party.id}`}><img className='calculatorImage' src="/images/calculator.png" alt="" /></a>
   </div>
-  
+
+    </>
+    ):(
+      <>
+        <a href='/'><button className="btn btn-outline" id='btnForTusa'>Вернуться на главную</button></a>
+      <div className='divZagolovok'>
+      <h1 className='zagolovok'>У тебя нет доступа к этой тусовке.</h1>
+    </div>
+    </>
+    )
   ):(
   <div className='divZagolovok'>
     <h1 className='zagolovok'>Вы еще пока не можете смореть тусовки... <a href="/auth/signup">зарегестрируйся</a> или <a

@@ -4,7 +4,25 @@ body{
   display: flex;
   justify-content: center;
 }
-
+.partyManager{
+  font-family: 'Caveat', cursive;
+  width: 350px;
+  margin-left: 20px;
+}
+.divForMainPage{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.hForMainPage{
+  margin-top: 50px;
+  margin-left: 50px;
+  font-family: 'Caveat', cursive;
+  font-size: 80px;
+}
+.pForMainPage{
+  font-size: 20px;
+}
 .map{
   width: 450px;
   height: 450px;
@@ -114,7 +132,8 @@ a:active{
   gap: 200px;
 }
 .listOfPartyInfo{
-  margin: 50px 0px 0px 150px;
+  margin: 50px 0px 0px 75px;
+  width: 700px;
 }
 .listOfFunctions{
   display: flex;
@@ -125,7 +144,7 @@ a:active{
 }
 .calculatorH{
   position: fixed;
-  bottom: 35%;
+  bottom: 23%;
   right: 3%;
 }
 .calculatorImage{
@@ -133,11 +152,11 @@ a:active{
   height: 200px;
   transform: rotate(-25deg);
   position: fixed;
-  bottom: 10%;
+  bottom: 1%;
   right: 10%;
 }
 .dateOfParty{
-  width: 200px;
+  width: 400px;
   text-align: end;
   margin-right: 10px;
 }
@@ -151,18 +170,25 @@ a:active{
   width: 250px;
   height: 40px;
 }
+
+#tdFix{
+  margin-left: 10px;
+}
+#titleH{
+  height: 100px;
+}
 .divCode{
   width: 350px;
   display: flex;
+  gap: 10px;
 }
 .divBlock{
   display: flex;
   flex-direction: column;
 }
-.zagolovok{
-  margin: 50px 0 0 50px;
+.navbar{
+  border-radius: 0 0 20px 20px;
 }
-
 .btn-outline {
   border-color: #ced4da;
 }
@@ -182,7 +208,10 @@ a:active{
 .wrapperAuth{
   width: 400px;
 }
-
+#btnForAuth{
+  margin-left: 100px;
+  width: 200px;
+}
 .wrapperCreate{
   width: 800px;
 }
@@ -194,7 +223,7 @@ a:active{
 .wrapper{
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 25px;
 }
 
 .wrapperParty{
@@ -205,12 +234,22 @@ a:active{
 
 .formForInput{
   margin: 10px;
+  height: 150px;
   width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
+.formForInput1{
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.selectForDebtor{
+  font-size: 25px;
+  padding: 10px;
+}
 .container {
     padding-right: 15px;
     padding-left: 15px;
@@ -223,26 +262,50 @@ a:active{
   gap: 50px;
 }
 .tableForFinal{
-  overflow: scroll;
+  overflow: auto;
   height: 400px;
   width: 600px;
 }
 thead{
   background-color: rgba(156, 120, 41, 0.6);
 }
+#btnForTusa{
+  margin: 5px 0px;
+  width: 200px;
+}
 
-  @media (min-width: 768px) {
+  @media (max-width: 575px) { 
+    .navbar{
+      border-radius: 0px;
+    }
+   }
+
+  @media (min-width: 576px) and (max-width: 767px) {
+    .navbar{
+      border-radius: 0px;
+    }
+    .divZagolovok{
+      width: 600px;
+    }
+   }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
     .container {
       width: 750px;
     }
-  }
-  @media (min-width: 992px) {
+    .navbar{
+      border-radius: 0px;
+    }
+   }
+  
+  @media (min-width: 992px) and (max-width: 1199px) {
     .container {
       width: 970px;
-    }
-  }
+      }
+   }
+  
   @media (min-width: 1200px) {
     .container {
       width: 1170px;
     }
-  }
+   }

@@ -17,7 +17,7 @@ return (
         <div className="form-text">Никому не сообщайте пароль.</div>
       </div>
       <p>{error?.message}</p>
-      <button type="submit" className="btn btn-outline">Войти</button>
+      <button id='btnForAuth' type="submit" className="btn btn-outline">Войти</button>
     </form>
   </div>
   </div>

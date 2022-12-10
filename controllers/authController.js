@@ -35,6 +35,12 @@ exports.checkUserAndSession = async (req, res) => {
   const {email, password} = req.body
   try {
     const user = await User.findOne({ where: {email}})
+    console.log('user', user)
+    if(user===null){
+      let error = new Error()
+      error.message = 'Неправильная почта или пароль.'
+      throw error
+    }
     const isPasswordValid = await bcrypt.compare(password, user.password)
     if(isPasswordValid){
       req.session.user = {id: user.id, name:user.name, email:user.email}
@@ -47,6 +53,7 @@ exports.checkUserAndSession = async (req, res) => {
       throw error
     }
   } catch (error) {
+    console.log(error)
     render(Signin, { error }, res);
   }
 }

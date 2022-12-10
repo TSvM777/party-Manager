@@ -2,12 +2,11 @@ const React = require('react');
 const Layout = require('./Layout');
 
 function Profile({user,parties}) {
-const date = new Date(Date.now()).toLocaleDateString()
 return (
 <Layout user={user}>
   {user?(
   <div>
-    <h1>Добрый день, {user.name}!</h1>
+    <a href='/'><button className="btn btn-outline" id='btnForTusa'>Вернуться на главную</button></a>
     <h2>Ниже представлен список всех ваших ближайших мероприятий</h2>
     <table className="table">
       <thead>
@@ -29,12 +28,7 @@ return (
               <div id={el['Party.id']} className='map'></div>
             </div>
           </td>
-          {new Date(date)>new Date(el['Party.date'].toLocaleDateString())?(
-          <td className="table-danger">{el['Party.date'].toLocaleDateString()}</td>
-          ):(
-          <td className="table-success">{el['Party.date'].toLocaleDateString()}</td>
-          )}
-
+          <td>{el['Party.date'].toLocaleDateString()}</td>
           {user.id===el['Party.user_id']?(
           <td>{el['Party.code']}</td>
           ):(
@@ -44,7 +38,7 @@ return (
           <td>
             <a href={`/profile/edit/${el['Party.id']}`}> <button className="btn btn-outline">Редактировать</button>
             </a>
-            <button className="btn btn-outline" data-delete={el['Party.id']}>Удалить</button>
+            <button id='tdFix' className="btn btn-outline" data-delete={el['Party.id']}>Удалить</button>
           </td>
           ):(
           <td><button className="btn btn-outline" data-exit={el['Party.id']}>Выйти</button></td>

@@ -10,7 +10,7 @@ return (
     <div className="mb-3">
         <label className="form-label">Имя пользователя</label>
         <input type="text" name="name" className="form-control" required/>
-        <div className="form-text">Используйте латинские буквы и цифры.</div>
+        <div className="form-text">Пишите настоящее имя.</div>
       </div>
       <div className="mb-3">
         <label className="form-label">Адрес электронной почты</label>
@@ -23,7 +23,7 @@ return (
         <div className="form-text">Никому не сообщайте пароль.</div>
       </div>
       <p>{message}</p>
-      <button type="submit" className="btn btn-outline">Регистрация</button>
+      <button id='btnForAuth' type="submit" className="btn btn-outline">Регистрация</button>
     </form>
   </div>
   </div>

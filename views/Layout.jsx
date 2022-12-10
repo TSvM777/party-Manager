@@ -10,12 +10,13 @@ return (
   <meta name='viewport' content='width=device-width, initial-scale=1.0' />
   <title>Моя вечеринка
   </title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@500&display=swap" rel="stylesheet"/>
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   </link>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@500&family=Caveat&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="/css/style.css" />
   <script defer src="https://api-maps.yandex.ru/2.1/?apikey=1d191576-f1f9-4ed0-8eb1-ba8f2d9c7642&lang=ru_RU" type="text/javascript"></script>
 
@@ -45,6 +46,9 @@ return (
           </ul>
         </div>
       </div>
+      <div>
+        <h2 className='partyManager'>PARTY MANAGER</h2>
+      </div>
     </nav>
     ):
     (<nav className="navbar navbar-expand-lg bg-light">
@@ -64,6 +68,9 @@ return (
             </li>
           </ul>
         </div>
+      </div>
+      <div>
+        <h2 className='partyManager'>PARTY MANAGER</h2>
       </div>
     </nav>
     )}

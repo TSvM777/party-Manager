@@ -15,7 +15,9 @@ exports.renderTusaPage = async (req, res) => {
   try {
     const party = await Party.findOne({where: {id: req.params.id}})
     const people = await UserParty.findAndCountAll({where:{party_id:party.id}})
-    render(TusaPage, {user, party, people}, res)
+    const peoples = await UserParty.findAll({where: {user_id:user.id, party_id:req.params.id}})
+    const glava = await Party.findOne({include: User, where: {id:req.params.id}, raw:true})
+    render(TusaPage, {user, party, people, peoples, glava}, res)
   } catch (error) {
     console.log(error)
   }
@@ -23,15 +25,17 @@ exports.renderTusaPage = async (req, res) => {
 
 exports.renderProductForm = async (req, res) => {
   const {user} = req.session
+  const peoples = await UserParty.findAll({where: {user_id:user.id, party_id:req.params.id}})
   const party = await Party.findOne({where: {id: req.params.id}})
-  render(AddProduct, {user, party}, res)
+  render(AddProduct, {user, party, peoples}, res)
 }
 
 exports.renderDebtorForm = async (req, res) => {
   const {user} = req.session
   const party = await Party.findOne({where: {id: req.params.id}})
-  const zakup = await Zakup.findAll({where: {party_id:req.params.id}, raw:true})
-  render(AddDebtor, {user, party, zakup}, res)
+  const zakup = await Zakup.findAll({include: User, where: {party_id:req.params.id}, raw:true})
+  const peoples = await UserParty.findAll({where: {user_id:user.id, party_id:req.params.id}})
+  render(AddDebtor, {user, party, zakup, peoples}, res)
 }
 
 exports.getItogoForm = async (req, res) => {
@@ -39,6 +43,7 @@ exports.getItogoForm = async (req, res) => {
   const {id} = req.params
   const party = await Party.findOne({where: {id}})
   const zakups = await Zakup.findAll({include: User, where: {party_id:id}, raw:true})
+  const peoples = await UserParty.findAll({where: {user_id:user.id, party_id:req.params.id}})
   const debtor = await User.findAll({
     include: {
       model: Zakup,
@@ -57,7 +62,7 @@ exports.getItogoForm = async (req, res) => {
     }, raw:true,
     
   })
-  render(Table, {user, party, zakups, debtor}, res)
+  render(Table, {user, party, zakups, debtor, peoples}, res)
 }
 
 exports.getListOfparticipant = async (req, res) => {
@@ -65,7 +70,8 @@ exports.getListOfparticipant = async (req, res) => {
   const {user} = req.session
   try {
     const users = await UserParty.findAll({include: User, where: {party_id:id}, raw:true})
-    render(ListOfPeople, {user, users}, res)
+    const peoples = await Party.findOne({where: {user_id:user.id, id}})
+    render(ListOfPeople, {user, users, peoples}, res)
   } catch (error) {
     console.log(error)
   }
@@ -86,26 +92,49 @@ exports.addProduct = async (req, res) => {
   const {id} = req.params
   try {
   const prod = await Zakup.create({item, sum, user_id:user.id, party_id:id})
-  res.redirect(`/party/${id}`)
+  res.redirect(`/party/addproduct/${id}`)
   } catch (error) {
     console.log(error)
   }
 }
 
 exports.addDebtor = async (req, res) => {
+  console.log(req.body)
   const {user} = req.session
   const {id} = req.params
-  console.log('=========================', req.body)
   const {item} = req.body
+  console.log('item', item)
   try {
-    const debtor = await Debtor.findOrCreate({where: {user_id:user.id, zakup_id:item}})
+    if(typeof item === 'string'){
+      const debtor = await Debtor.findOrCreate({where: {user_id:user.id, zakup_id:item}, raw:true})
+      if(debtor[1]===false){ 
+        res.redirect(`/party/${id}`)
+      }else {
     let count = await Debtor.findAndCountAll({where:{zakup_id:item}})
     const zakup = await Zakup.findOne({where: {id:item}})
     let result
     if(count.count === 1) {result = zakup.sum}
     else {result = zakup.sum*(count.count-1)/(count.count)}
-    const updateSum = await Zakup.update({sum:result.toFixed()}, {where: {id:item}})
+    const updateSum = await Zakup.update({sum:result.toFixed()}, {where: {id:item}})}
     res.redirect(`/party/${id}`)
+    } 
+    else 
+    {
+    for(let i = 0; i < item.length; i++){
+    const debtor = await Debtor.findOrCreate({where: {user_id:user.id, zakup_id:+item[i]}, raw:true})
+    if(debtor[1]===false){ 
+      continue
+    }
+    else{
+    let count = await Debtor.findAndCountAll({where:{zakup_id:item[i]}})
+    const zakup = await Zakup.findOne({where: {id:item[i]}})
+    let result
+    if(count.count === 1) {result = zakup.sum}
+    else {result = zakup.sum*(count.count-1)/(count.count)}
+    const updateSum = await Zakup.update({sum:result.toFixed()}, {where: {id:item[i]}})
+    }}
+  res.redirect(`/party/${id}`)
+}
   } catch (error) {
     console.log(error)
   }

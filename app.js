@@ -45,7 +45,9 @@ app.use('/auth', authRoutes);
 app.use('/createParty', createRoutes)
 app.use('/profile', profileRoutes)
 app.use('/party', partyRoutes)
-
+app.use('*', (req, res) => {
+  res.redirect('/')
+})
 const PORT = process.env.PORT || 3100;
 app.listen(PORT, (err) => {
   if (err) return console.log('Ошибка запуска сервера.', err.message)

@@ -43,7 +43,6 @@ exports.renderEditPage = async (req, res) => {
 
 exports.editParty = async (req, res) => {
   const {user} = req.session
-  console.log('========================', req.params.id)
   const { title, code, date, clothes, place } = req.body
   try {
     await Party.update(

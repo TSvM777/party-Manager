@@ -1,7 +1,7 @@
 const express = require('express');
 const route = express.Router();
 const {
-  renderMainPage
+  renderMainPage,
 } = require('../controllers/indexController')
 
 route.get('/', renderMainPage)

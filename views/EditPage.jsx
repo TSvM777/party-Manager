@@ -6,6 +6,8 @@ function EditPage({user, party}) {
 return (
 <Layout user = {user}>
 {user?(
+  <>
+  <a href='/'><button className="btn btn-outline" id='btnForTusa'>Вернуться на главную</button></a>
   <div className="wrapper">
     <div className='wrapperCreate'>
       <h2>Тусовка</h2>
@@ -32,7 +34,7 @@ return (
           </div>
           <div className="formForInput">
             <label className="form-label">Геопозиция</label>
-            <input type="text" name="place" className="form-control"  value={party.place} required />
+            <input type="text" pattern='[0-9]{2}.[0-9]{6},\s[0-9]{2}.[0-9]{6}' name="place" className="form-control"  value={party.place} required />
           </div>
           <div className="formForInput">
             <label className="form-label">Жми скорей</label>
@@ -42,6 +44,7 @@ return (
       </form>
     </div>
   </div>
+  </>
   ):
   (
   <div className='divZagolovok'>

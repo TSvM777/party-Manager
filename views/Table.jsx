@@ -1,19 +1,21 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function Table({user, party, zakups, debtor}) {
-  console.log(debtor)
+function Table({user, party, zakups, debtor, peoples}) {
 return (
 <Layout user={user}>
   {user?(
+    peoples.length>0?(
+     <>
+     <a href='/'><button className="btn btn-outline" id='btnForTusa'>Вернуться на главную</button></a>
   <div>
     <h1>Добрый день, {user.name}!</h1>
     <h2>Таблица, которая облегчит тебе жизнь</h2>
     <div className='infoAboutParty'>
       <div className='listOfFunctions'>
-        <button className="btn btn-outline"><a href={`/party/${party.id}`}>Вернуться назад</a> </button> </div> <div className='divTable'>
+        <a href={`/party/${party.id}`}><button className="btn btn-outline" id='btnForTusa'>Вернуться назад </button></a> </div> <div className='divTable'>
             <div className='tableForFinal'>
-              <table class="table table-bordered border border-secondary">
+              <table className="table table-bordered border border-secondary">
                 <thead>
                   <tr>
                     <th scope="col">Кто?</th>
@@ -22,7 +24,7 @@ return (
                     <th scope="col">За что?</th>
                   </tr>
                 </thead>
-                <tbody class="table-group-divider">
+                <tbody className="table-group-divider">
                   {debtor.map((el)=>(
                   <tr>
                     <td>{el['Zakups.Debtors.User.name']}</td>
@@ -37,6 +39,15 @@ return (
       </div>
     </div>
   </div>
+  </>
+  ):(
+    <>
+      <a href='/'><button className="btn btn-outline" id='btnForTusa'>Вернуться на главную</button></a>
+    <div className='divZagolovok'>
+    <h1 className='zagolovok'>У тебя нет доступа к этой тусовке.</h1>
+  </div>
+  </>
+  )
   ):(
   <div className='divZagolovok'>
     <h1 className='zagolovok'>Вы еще пока не можете смореть тусовки... <a href="/auth/signup">зарегестрируйся</a> или

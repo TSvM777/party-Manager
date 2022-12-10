@@ -1,16 +1,19 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-function ListOfPeople({user, users}) {
+function ListOfPeople({user, users, peoples}) {
 return (
 <Layout user={user}>
   {user?(
+    peoples?(
+    <>
+    <a href='/'><button className="btn btn-outline" id='btnForTusa'>Вернуться на главную</button></a>
   <div>
     <h1>Добрый день, {user.name}!</h1>
     <h2>Удаляй кого захочешь</h2>
     <div className='infoAboutParty'>
       <div className='listOfFunctions'>
-        <button className="btn btn-outline"><a href={`/party/${users[0].party_id}`}>Вернуться назад</a> </button> </div>
+        <a href={`/party/${users[0].party_id}`}><button className="btn btn-outline" id='btnForTusa'>Вернуться назад </button></a> </div>
             <div className='cartOfList'>
             <h2>Список участников</h2>
             <ol>
@@ -32,7 +35,15 @@ return (
       <a href={`/party/itogo/${users[0].party_id}`}> <img className='calculatorImage' src="/images/calculator.png"
         alt="" /></a>
     </div>
-
+    </>
+    ):(
+      <>
+        <a href='/'><button className="btn btn-outline" id='btnForTusa'>Вернуться на главную</button></a>
+      <div className='divZagolovok'>
+      <h1 className='zagolovok'>У тебя нет доступа к этой тусовке.</h1>
+    </div>
+    </>
+    )
     ):(
     <div className='divZagolovok'>
       <h1 className='zagolovok'>Вы еще пока не можете смореть тусовки... <a href="/auth/signup">зарегестрируйся</a> или
