@@ -18,7 +18,7 @@ return (
             <input type="text" name="title" className="form-control" required />
           </div>
           <div className="formForInput">
-            <div className='divZagolovok'>
+            <div className='ryad'>
               <label className="form-label">Инвайт-код*</label>
               <button data-generateCode='generateCode' className='btn btn-outline' style={{border:'none'}}>сгенерировать</button>
             </div>
@@ -26,7 +26,7 @@ return (
           </div>
           <div className="formForInput">
             <label className="form-label">Дата</label>
-            <input type="date" name="date" className="form-control" required />
+            <input type="date" name="date" className="form-control" id='inputForDate' required />
           </div>
           <div className="formForInput">
             <label className="form-label">Дресс-код</label>

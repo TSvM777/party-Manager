@@ -30,9 +30,6 @@ return (
               </div>
             </div>
             </form>
-            <h2 className='calculatorH'>Жми на <a href={`/party/itogo/${party.id}`}>калькулятор</a>, чтобы узнать затраты</h2>
-            <a href={`/party/itogo/${party.id}`}> <img className='calculatorImage' src="/images/calculator.png" alt="" />
-          </a>
       </div>
     </div>
     </>

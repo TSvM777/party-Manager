@@ -46,7 +46,7 @@ return (
           <p className='dateOfParty'>{party.clothes}</p>
         </div>
         <div className='cart'>
-          <h3 className='textOfCart'>Количество участников</h3>
+          <h3 id='idForTextOfCart' className='textOfCart'>Количество участников</h3>
           <p  data-count={party.id} className='dateOfParty'>{people.count}</p>
         </div>
         {user.id===(party.user_id)?(

@@ -18,21 +18,30 @@ return (
          <form
             action={`/party/adddebtor/${party.id}`} method='POST'>
             <div className='cartOfZakup'>
-              <div className="formForInput">
+              <div className="formForInput" id="debtorInput">
+                {zakup.length>0?(
+                  <>
                 <label className="form-label">Выбери</label>
-                <select className='selectForDebtor' style={{height: '500px'}} multiple name='item' id="">
+                <select className='selectForDebtor' style={{height: '500px'}} multiple name='item'>
                   {zakup.map((el)=>
                   <option value={el.id}>{el.item} - {el['User.name']}</option>)}
                 </select>
+                </>
+                ):(
+                <>
+                  <h1>У вас пока не было трат</h1>
+                </>
+                )}
               </div>
-              <div className="formForInput">
+              {zakup.length>0?(
+              <div className="formForInput" id="debtorBtn">
                 <button type="submit" className="btn btn-outline">Создать</button>
               </div>
+              ):(
+                <></>
+              )}
             </div>
             </form>
-            <h2 className='calculatorH'>Жми на <a href={`/party/itogo/${party.id}`}>калькулятор</a>, чтобы узнать затраты</h2>
-            <a href={`/party/itogo/${party.id}`}> <img className='calculatorImage' src="/images/calculator.png" alt="" />
-          </a>
       </div>
     </div>
     </>

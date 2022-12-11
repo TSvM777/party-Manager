@@ -8,6 +8,7 @@ return (
   <div>
     <a href='/'><button className="btn btn-outline" id='btnForTusa'>Вернуться на главную</button></a>
     <h2>Ниже представлен список всех ваших ближайших мероприятий</h2>
+    <div class="table-responsive">
     <table className="table">
       <thead>
         <tr>
@@ -35,18 +36,19 @@ return (
           <td>Не доступно</td>
           )}
           {user.id===el['Party.user_id']?(
-          <td>
+          <td id='btnForTable'>
             <a href={`/profile/edit/${el['Party.id']}`}> <button className="btn btn-outline">Редактировать</button>
             </a>
             <button id='tdFix' className="btn btn-outline" data-delete={el['Party.id']}>Удалить</button>
           </td>
           ):(
-          <td><button className="btn btn-outline" data-exit={el['Party.id']}>Выйти</button></td>
+          <td id='btnForTable'><button id='btnForProfile' className="btn btn-outline" data-exit={el['Party.id']}>Выйти</button></td>
           )}
         </tr>
         )}
       </tbody>
     </table>
+    </div>
   </div>
   ):
   (

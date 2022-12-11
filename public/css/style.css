@@ -158,7 +158,6 @@ a:active{
 .dateOfParty{
   width: 400px;
   text-align: end;
-  margin-right: 10px;
 }
 .cart{
   display: flex;
@@ -278,9 +277,142 @@ thead{
   width: 200px;
 }
 
-  @media (max-width: 575px) { 
+  @media (max-width: 450px) { 
     .navbar{
       border-radius: 0px;
+    }
+    .container {
+      width: 400px;
+      padding: 0px 30px;
+    }
+    .container-fluid{
+      margin: 0 20px;
+    }
+    .hForMainPage{
+      margin: 25px 0px 0px 25px;
+    }
+    #btnForAuth{
+      margin-left: 70px;
+    }
+    .divZagolovok{
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+    .partyList{
+      margin: 10px 0px 0px 10px;
+    }
+    #btnForTusa{
+      margin: 5px 0px 10px -10px;
+      width: 150px;
+    }
+    .formForInput{
+      height: 50px;
+    }
+    #inputForDate{
+      height: 50px;
+      padding: 19px;
+      font-size: 18px
+    }
+    .map{
+      width: 350px;
+      height: 470px;
+    }
+    .partyList{
+      flex-direction: column;
+      margin: 0px 0px 20px 0px;
+    }
+    .cartOfParty{
+      max-width: 340px;
+      max-height: 300px;
+      height:auto;
+    }
+    .cart{
+      margin: 0px;
+      max-height: 100px;
+    }
+    .textOfCart{
+      width: 100px;
+    }
+    #titleH{
+      max-height: 50px;
+    }
+    .table{
+      margin: 10px 0px;
+    }
+    #btnForTable{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    #tdFix{
+      width: 101px;
+      margin-left: 0px;
+    }
+    #btnForProfile{
+      width: 101px;
+    }
+    td{
+      height: 100px;
+    }
+    .listOfFunctions{
+      width: 150px;
+      margin: 0px;
+      gap: 0px;
+      height: 100%;
+    }
+    .listOfPartyInfo{
+      max-width: 340px;
+      margin: 0px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .infoAboutParty{
+      max-width: 350px;
+      flex-direction: column;
+    }
+    .calculatorH{
+      position: absolute;
+      bottom: 63%;
+      font-size: 20px;
+      max-width: 150px;
+      right: 10%;
+    }
+
+    .calculatorImage{
+      position: absolute;
+      bottom: 38%;
+      right: 3%;
+      transform: rotate(0deg);
+    }
+    .straincher{
+      gap: 0px;
+    }
+    .wrapper{
+      margin-top: 0px;
+    }
+    .cartOfZakup{
+      margin: 0px;
+      width: 340px;
+      gap: 0px;
+    }
+    #debtorInput{
+      height: 150px;
+      margin: 0px;
+      width: 340px;
+    }
+    #debtorBtn{
+      margin: 0px;
+      width: 340px;
+    }
+    .divTable{
+      margin: 0;
+    }
+    .cartOfList{
+      width: 340px;
+      margin: 0;
     }
    }
 

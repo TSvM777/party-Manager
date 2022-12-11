@@ -31,9 +31,6 @@ return (
             </ol>
             </div>
       </div>
-      <h2 className='calculatorH'>Жми на <a href={`/party/itogo/${users[0].party_id}`}>калькулятор</a>, чтобы узнать затраты</h2>
-      <a href={`/party/itogo/${users[0].party_id}`}> <img className='calculatorImage' src="/images/calculator.png"
-        alt="" /></a>
     </div>
     </>
     ):(
