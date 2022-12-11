@@ -375,7 +375,7 @@ thead{
     }
     .calculatorH{
       position: absolute;
-      bottom: 63%;
+      bottom: 53%;
       font-size: 20px;
       max-width: 150px;
       right: 10%;
@@ -383,9 +383,10 @@ thead{
 
     .calculatorImage{
       position: absolute;
-      bottom: 38%;
+      bottom: 33%;
       right: 3%;
       transform: rotate(0deg);
+      scale: 0.5;
     }
     .straincher{
       gap: 0px;
