@@ -193,11 +193,12 @@ document.addEventListener('click', async (event) => {
                     .set({
                         // Формируем строку с данными об объекте.
                         iconCaption: [
-                            coord
+                            coords
                         ].filter(Boolean).join(', '),
                         // В качестве контента балуна задаем строку с адресом объекта.
-                        balloonContent: coord
-                    });
+                        balloonContent: coords
+                      });
+                      console.log(coords)
             });
         }
     }
