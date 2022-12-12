@@ -188,17 +188,16 @@ document.addEventListener('click', async (event) => {
             myPlacemark.properties.set('iconCaption', 'поиск...');
             ymaps.geocode(coords).then(function (res) {
                 var firstGeoObject = res.geoObjects.get(0);
-    
+                let coordinates = [+coords[0].toFixed(6), +coords[1].toFixed(6)]
                 myPlacemark.properties
                     .set({
                         // Формируем строку с данными об объекте.
                         iconCaption: [
-                            coords
+                          coordinates
                         ].filter(Boolean).join(', '),
                         // В качестве контента балуна задаем строку с адресом объекта.
-                        balloonContent: coords
+                        balloonContent: coordinates
                       });
-                      console.log(coords)
             });
         }
     }
