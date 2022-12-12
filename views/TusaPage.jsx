@@ -12,6 +12,7 @@ return (
     <h1>Добрый день, {user.name}!</h1>
     <h2>Здесь ты можешь воспользоваться всем функционалом нашего приложения</h2>
     <div className='infoAboutParty'>
+      <div className='testDiv'>
       <div className='listOfFunctions'>
         <a href={`/party/addproduct/${party.id}`}><button className="btn btn-outline" id='btnForTusa'>Твои затраты</button></a>
         <a href={`/party/adddebtor/${party.id}`}><button id='btnForTusa' className="btn btn-outline">Хочешь скинуться?</button></a>
@@ -24,6 +25,11 @@ return (
         ):(
         <></>
         )}
+      </div>
+      <div>
+      <h2 className='calculatorH'>Жми на <a href={`/party/itogo/${party.id}`}>калькулятор</a>, чтобы узнать затраты</h2>
+      <a href={`/party/itogo/${party.id}`}><img className='calculatorImage' src="/images/calculator.png" alt="" /></a>
+      </div>
       </div>
       <div className='listOfPartyInfo'>
         
@@ -59,8 +65,7 @@ return (
         )}
     </div>
     </div>
-    <h2 className='calculatorH'>Жми на <a href={`/party/itogo/${party.id}`}>калькулятор</a>, чтобы узнать затраты</h2>
-    <a href={`/party/itogo/${party.id}`}><img className='calculatorImage' src="/images/calculator.png" alt="" /></a>
+    
   </div>
 
     </>
